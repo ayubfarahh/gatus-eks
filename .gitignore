@@ -1,0 +1,14 @@
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.terraformrc
+terraform.rc
+!**/.terraform.lock.hcl
+
+# general
+node_modules/
+venv/
+dist/
+*.log
+.DS_Store
