@@ -1,0 +1,19 @@
+# Minimal config: checks a couple of public endpoints every 30s
+storage:
+  type: sqlite
+  path: /data/data.db
+
+endpoints:
+  - name: Example over HTTPS
+    url: https://example.com/
+    interval: 30s
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 1000ms"
+
+  - name: Google head check
+    url: https://www.google.com/
+    method: HEAD
+    interval: 30s
+    conditions:
+      - "[STATUS] == 200"
