@@ -1,4 +1,4 @@
 variable "priv_subnets" {
-    type = list(string)
-  
+  type = list(string)
+
 }

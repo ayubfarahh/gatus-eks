@@ -3,6 +3,6 @@ module "networking" {
 }
 
 module "eks" {
-    source = "./modules/eks"
-    priv_subnets = module.networking.priv_subnets
+  source       = "./modules/eks"
+  priv_subnets = module.networking.priv_subnets
 }

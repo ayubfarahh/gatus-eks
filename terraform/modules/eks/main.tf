@@ -1,8 +1,8 @@
 resource "aws_eks_cluster" "gatus-cluster" {
-  name = "gatus-controlplane"
+  name     = "gatus-controlplane"
   role_arn = aws_iam_role.cluster.arn
   version  = "1.33"
-  
+
 
   vpc_config {
     subnet_ids = var.priv_subnets
