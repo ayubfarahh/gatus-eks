@@ -4,9 +4,22 @@ terraform {
       source  = "hashicorp/aws"
       version = "6.12.0"
     }
+
+    kubectl = {
+      source = "alekc/kubectl"
+    }
+
   }
 }
 
-provider "aws" {
-  # Configuration options
+provider "kubectl" {
+
+}
+provider "helm" {
+  kubernetes = {
+
+  }
+}
+provider "kubernetes" {
+
 }

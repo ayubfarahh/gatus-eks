@@ -5,7 +5,10 @@ module "networking" {
 module "eks" {
   source       = "./modules/eks"
   priv_subnets = module.networking.priv_subnets
-  vpc_id = module.networking.vpc_id
+  vpc_id       = module.networking.vpc_id
 }
 
+module "irsa" {
+  source = "./modules/irsa"
 
+}
