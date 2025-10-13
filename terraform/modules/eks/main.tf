@@ -1,3 +1,14 @@
+resource "aws_security_group" "cluster" {
+  name = "control-plane-sg"
+  vpc_id = var.vpc_id
+  
+}
+
+resource "aws_security_group" "worker-sg" {
+  name = "worker-sg"
+  
+}
+
 resource "aws_eks_cluster" "gatus-cluster" {
   name     = "gatus-controlplane"
   role_arn = aws_iam_role.cluster.arn
