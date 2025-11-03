@@ -15,7 +15,6 @@ resource "aws_iam_openid_connect_provider" "oidc" {
 }
 
 module "cert_manager" {
-  source               = "terraform-iaac/cert-manager/kubernetes"
-  cluster_issuer_email = "ayubfarahh@gmail.com"
-  
+  source = "terraform-iaac/cert-manager/kubernetes"
+
 }
