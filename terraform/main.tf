@@ -9,7 +9,7 @@ module "eks" {
 }
 
 module "irsa" {
-  source = "./modules/irsa"
+  source   = "./modules/irsa"
   eks_name = module.eks.eks_name
 
 }
