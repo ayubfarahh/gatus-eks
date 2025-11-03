@@ -1,20 +1,19 @@
-data "aws_eks_cluster" "gatus-cluster" {
-  name = "gatus-controlplane"
+module "cert_manager_pod_identity" {
+  source = "terraform-aws-modules/eks-pod-identity/aws"
+
+  name = "cert-manager"
+
+  attach_cert_manager_policy    = true
+  cert_manager_hosted_zone_arns = ["arn:aws:route53:::hostedzone/Z0705516CKV60PQH3XUN"]
+
+  tags = {
+    Environment = "dev"
+  }
 }
 
-data "tls_certificate" "eks_cert" {
-  url = data.aws_eks_cluster.gatus-cluster.identity[0].oidc[0].issuer
-
-}
-
-resource "aws_iam_openid_connect_provider" "oidc" {
-  client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.tls_certificate.eks_cert.certificates[0].sha1_fingerprint]
-  url             = data.aws_eks_cluster.gatus-cluster.identity[0].oidc[0].issuer
-
-}
-
-module "cert_manager" {
-  source = "terraform-iaac/cert-manager/kubernetes"
-
+resource "aws_eks_pod_identity_association" "example" {
+  cluster_name    = aws_eks_cluster.example.name
+  namespace       = "example"
+  service_account = "example-sa"
+  role_arn        = aws_iam_role.example.arn
 }
